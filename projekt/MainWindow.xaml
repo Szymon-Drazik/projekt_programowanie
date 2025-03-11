@@ -1,0 +1,52 @@
+﻿<Window x:Class="projekt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Książka Kucharska" Height="600" Width="800" Background="#FFF5E1">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Wyszukiwania -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 0 0 10">
+            <Label Content="Wyszukaj przepis:" FontSize="16" FontWeight="Bold"/>
+            <ComboBox Name="cmb_listview" Width="250" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="False" Margin="10 0 0 0" TextBoxBase.TextChanged="comboBoxSearch_TextChanged"/>
+            <Button Name="btn_search" Content="Szukaj" Width="100" Margin="10 0 0 0" />
+        </StackPanel>
+
+        <!-- Sekcja wyświetlania przepisu -->
+        <Grid Grid.Row="1" Margin="0 0 0 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Zdjęcie -->
+            <Border Grid.Column="0" Background="#FFFFFF" CornerRadius="10" Padding="10" Margin="10">
+                <Image Name="img" Stretch="Uniform" />
+            </Border>
+
+            <!-- Informacje -->
+            <StackPanel Grid.Column="1" Margin="10">
+                <Label Content="Nazwa przepisu:" FontWeight="Bold"/>
+                <TextBox Name="txt_name" IsReadOnly="True" Margin="0 5" FontSize="14"/>
+
+                <Label Content="Składniki:" FontWeight="Bold"/>
+                <TextBox Name="txt_ingredients" IsReadOnly="True" Margin="0 5" Height="80" TextWrapping="Wrap"/>
+
+                <Label Content="Sposób przygotowania:" FontWeight="Bold"/>
+                <TextBox Name="txt_description" IsReadOnly="True" Height="235" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Przyciski -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Name="btn_add" Content="Dodaj przepis" Width="120" Margin="5" Click="btn_add_Click" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Name="btn_edit" Content="Edytuj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Name="btn_delete" Content="Usuń" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Name="btn_close" Content="Zamknij" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
+        </StackPanel>
+    </Grid>
+</Window>
