@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using projekt.Nowy_folder;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,13 +17,16 @@ namespace projekt
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly Interface1 _bazaRepository = new BazaRepository();
+
         private List<string> przepisy = new List<string>
         {
-            "Spaghetti Bolognese",
-            "Pizza Margherita",
-            "Pierogi Ruskie",
-            "Tiramisu",
-            "Schabowy z ziemniakami"
+            //"Spaghetti Bolognese",
+            //"Pizza Margherita",
+            //"Pierogi Ruskie",
+            //"Tiramisu",
+            //"Schabowy z ziemniakami",
+            //"Kotlet"
         };
         public MainWindow()
         {
@@ -49,9 +53,10 @@ namespace projekt
 
         private void btn_add_Click(object sender, RoutedEventArgs e)
         {
-            Window1 window1 = new Window1();
-            window1.Show();
-            this.Close();
+        //    Window1 window1 = new Window1();
+        //    window1.Show();
+        //    this.Close();
+
         }
     }
 }
