@@ -61,6 +61,9 @@ namespace projekt.Nowy_folder
             {
                 Console.WriteLine("Nie udało się otworzyć połączenia z bazą danych");
             }
+
+
+
             dbConnection.Close();
             return result;
         }
