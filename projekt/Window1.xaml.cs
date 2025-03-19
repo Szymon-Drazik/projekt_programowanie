@@ -21,7 +21,7 @@ namespace projekt
     {
         public Window1()
         {
-            InitializeComponent();
+            
         }
     }
 }

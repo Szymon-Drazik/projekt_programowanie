@@ -13,15 +13,16 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <!--Nazwa Przepisu-->
         <Label Content="Nazwa przepisu:" FontWeight="Bold" Grid.Row="0" Margin="0 5"/>
         <TextBox Name="txt_name" Grid.Row="1" Margin="0 5" FontSize="14" Height="25"/>
-
+         <!--Składniki-->
         <Label Content="Składniki:" Grid.Row="2" FontWeight="Bold" Margin="0 5"/>
-        <TextBox Name="txt_ingredients" Grid.Row="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,10,0,91"/>
-
+        <TextBox Name="txt_ingredients" Grid.Row="3" TextWrapping="Wrap" Margin="0,10,0,91"/>
+        <!--Sposób przygotowania-->
         <Label Content="Sposób przygotowania:" Grid.Row="3" FontWeight="Bold" Margin="0,116,0,40"/>
-        <TextBox Name="txt_description" Grid.Row="3" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,163,0,4" Grid.RowSpan="3"/>
-
+        <TextBox Name="txt_description" Grid.Row="3" TextWrapping="Wrap" Margin="0,163,0,4" Grid.RowSpan="3"/>
+        <!--Przyciski-->
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <Button Style="{DynamicResource ButtonStyle1}" Name="btn_save" Content="Zapisz" Width="100" Margin="5"/>
             <Button Name="btn_cancel" Content="Anuluj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
