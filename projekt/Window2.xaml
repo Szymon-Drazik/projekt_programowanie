@@ -36,9 +36,10 @@
         <Image Name="img_display" Grid.Row="3" Margin="346,164,170,8" Stretch="Uniform" Grid.RowSpan="3"/>
 
         <!-- Przyciski -->
-        <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="520,10,0,10" Grid.ColumnSpan="2">
-            <Button Name="btn_save" Content="Zapisz zmiany" Width="120" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
-            <Button Name="btn_cancel" Content="Anuluj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
+        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="354,10,32,10">
+            <Button x:Name="btn_return" Content="Wróć" Margin="5" Width="120" Style="{DynamicResource ButtonStyle1}" Click="btn_return_Click"/>
+            <Button x:Name="btn_save" Content="Zapisz zmiany" Width="120" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
+            <Button x:Name="btn_cancel" Content="Anuluj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
         </StackPanel>
     </Grid>
 </Window>

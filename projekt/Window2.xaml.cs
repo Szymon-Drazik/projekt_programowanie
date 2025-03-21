@@ -26,6 +26,30 @@ namespace projekt
         public Window2()
         {
             InitializeComponent();
+            przepisy = _bazaRepository.ReadAll();
+
+            cmb_listview.ItemsSource = przepisy;
+        }   
+        private void comboBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (przepisy == null || przepisy.Count == 0)
+                return;
+
+            var comboBox = sender as ComboBox;
+            if (comboBox != null)
+            {
+                string text = comboBox.Text.ToLower();
+
+                // Filtrujemy listę, ale nie usuwamy oryginalnych danych
+                var filteredList = przepisy
+                    .Where(p => p.ToLower().Contains(text))
+                    .ToList();
+
+                comboBox.ItemsSource = filteredList;
+
+                // Otwieramy listę podpowiedzi, jeśli są wyniki
+                comboBox.IsDropDownOpen = filteredList.Count > 0;
+            }
         }
         private void btn_loadImage_Click(object sender, RoutedEventArgs e)
         {
@@ -48,6 +72,13 @@ namespace projekt
 
                 // Tutaj możesz użyć imageBlob według potrzeb, np. do zapisania w bazie danych
             }
+        }
+
+        private void btn_return_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
         }
     }
 }
