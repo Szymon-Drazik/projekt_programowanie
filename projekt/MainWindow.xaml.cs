@@ -18,7 +18,6 @@ namespace projekt
     public partial class MainWindow : Window
     {
         private readonly Interface1 _bazaRepository = new BazaRepository();
-
         private List<string> przepisy = new List<string>
         {
             //"Spaghetti Bolognese",
@@ -31,32 +30,38 @@ namespace projekt
         public MainWindow()
         {
             InitializeComponent();
+            przepisy = _bazaRepository.ReadAll();
+
             cmb_listview.ItemsSource = przepisy;
         }
         private void comboBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (przepisy == null || przepisy.Count == 0)
+                return;
+
             var comboBox = sender as ComboBox;
             if (comboBox != null)
             {
                 string text = comboBox.Text.ToLower();
 
-                // Filtrujemy listę, ale nie usuwamy jej całkowicie
-                var filteredList = przepisy.Where(p => p.ToLower().Contains(text)).ToList();
+                // Filtrujemy listę, ale nie usuwamy oryginalnych danych
+                var filteredList = przepisy
+                    .Where(p => p.ToLower().Contains(text))
+                    .ToList();
 
-                // Zmieniamy źródło danych ComboBox
                 comboBox.ItemsSource = filteredList;
 
                 // Otwieramy listę podpowiedzi, jeśli są wyniki
                 comboBox.IsDropDownOpen = filteredList.Count > 0;
             }
         }
-
-        private void btn_add_Click(object sender, RoutedEventArgs e)
+        private void btn_add_Click_1(object sender, RoutedEventArgs e)
         {
         //    Window1 window1 = new Window1();
         //    window1.Show();
         //    this.Close();
 
         }
+
     }
 }

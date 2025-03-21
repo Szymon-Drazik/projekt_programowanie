@@ -10,7 +10,7 @@ namespace projekt.Nowy_folder
     {
         bool Create(Baza baza);
         Baza Read(int id);
-        List<Baza> ReadAll();
+        List<string> ReadAll();
         bool Update(Baza baza);
         bool Delete(int id);
 

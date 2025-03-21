@@ -81,10 +81,27 @@ namespace projekt.Nowy_folder
             return baza;
         }
 
-        public List<Baza> ReadAll()
+        public List<string> ReadAll()
         {
-            List<Baza> result = new List<Baza>();
-            return result;
+            List<string> recipeNames = new List<string>();
+
+            using (SqliteConnection dbConnection = new SqliteConnection(connectionString))
+            {
+                dbConnection.Open();
+                string sql = "SELECT Nazwa_przepisu FROM Baza";
+                using (SqliteCommand command = new SqliteCommand(sql, dbConnection))
+                {
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            recipeNames.Add(reader.GetString(0));
+                        }
+                    }
+                }
+            }
+
+            return recipeNames;
         }
 
         public bool Update(Baza baza)

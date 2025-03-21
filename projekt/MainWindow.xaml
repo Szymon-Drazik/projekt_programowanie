@@ -12,7 +12,7 @@
         <!-- Wyszukiwania -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 0 0 10">
             <Label Content="Wyszukaj przepis:" FontSize="16" FontWeight="Bold"/>
-            <ComboBox Name="cmb_listview" Width="250" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="False" Margin="10 0 0 0"/>
+            <ComboBox Name="cmb_listview" Width="250" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="False" Margin="10 0 0 0" TextBoxBase.TextChanged="comboBoxSearch_TextChanged"/>
             <Button Name="btn_search" Content="Szukaj" Width="100" Margin="10 0 0 0" Style="{DynamicResource ButtonStyle1}" />
         </StackPanel>
         
@@ -28,15 +28,14 @@
             </Border>
 
             <!-- Informacje -->
-            <StackPanel Grid.Column="1" Margin="10">
+            <StackPanel Grid.Column="1" Margin="10,10,10,10">
                 <Label Content="Nazwa przepisu:" FontWeight="Bold"/>
                 <TextBox Name="txt_name" IsReadOnly="True" Margin="0 5" FontSize="14"/>
 
                 <Label Content="Składniki:" FontWeight="Bold"/>
                 <TextBox Name="txt_ingredients" IsReadOnly="True" Margin="0 5" Height="80" TextWrapping="Wrap"/>
-
                 <Label Content="Sposób przygotowania:" FontWeight="Bold"/>
-                <TextBox Name="txt_description" IsReadOnly="True" Height="235" TextWrapping="Wrap"/>
+                <TextBox Name="txt_description" IsReadOnly="True" Height="228" TextWrapping="Wrap"/>
             </StackPanel>
         </Grid>
 
