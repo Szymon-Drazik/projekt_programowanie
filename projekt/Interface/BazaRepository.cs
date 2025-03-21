@@ -51,8 +51,8 @@ namespace projekt.Nowy_folder
                 command.Parameters.AddWithValue("@Opis", baza.Opis);
                 command.Parameters.AddWithValue("@Zdjecie", baza.Zdjecie);
                 
-                if(command.ExecuteNonQuery()==1)
-                result = true;
+                if(command.ExecuteNonQuery()>0)
+                    result = true;
                 else
                     Console.WriteLine("Zapytanie nie przeszło");
 
@@ -92,6 +92,11 @@ namespace projekt.Nowy_folder
             bool result = false;
             return result;
         }
+        public bool Add()
+        {
+            bool result = false;
+            return result;
+        }   
     }
     
 }

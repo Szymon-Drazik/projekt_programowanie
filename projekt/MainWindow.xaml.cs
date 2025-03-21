@@ -18,7 +18,6 @@ namespace projekt
     public partial class MainWindow : Window
     {
         private readonly Interface1 _bazaRepository = new BazaRepository();
-
         private List<string> przepisy = new List<string>
         {
             //"Spaghetti Bolognese",
@@ -50,13 +49,20 @@ namespace projekt
                 comboBox.IsDropDownOpen = filteredList.Count > 0;
             }
         }
-
-        private void btn_add_Click(object sender, RoutedEventArgs e)
+        private void btn_add_Click_1(object sender, RoutedEventArgs e)
         {
-        //    Window1 window1 = new Window1();
-        //    window1.Show();
-        //    this.Close();
+            Window1 dodajprzepis = new Window1();
 
+            // Otwórz nowe okno
+            dodajprzepis.Show();
+            this.Close();   
+        }
+
+        private void btn_edit_Click(object sender, RoutedEventArgs e)
+        {
+            Window2 edytujprzepis = new Window2();
+            edytujprzepis.Show();
+            this.Close();  
         }
     }
 }

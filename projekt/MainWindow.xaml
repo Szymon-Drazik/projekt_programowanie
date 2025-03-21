@@ -42,8 +42,8 @@
 
         <!-- Przyciski -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Name="btn_add" Content="Dodaj przepis" Width="120" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
-            <Button Name="btn_edit" Content="Edytuj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Name="btn_add" Content="Dodaj przepis" Width="120" Margin="5" Style="{DynamicResource ButtonStyle1}" Click="btn_add_Click_1"/>
+            <Button Name="btn_edit" Content="Edytuj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}" Click="btn_edit_Click"/>
             <Button Name="btn_delete" Content="Usuń" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
             <Button Name="btn_close" Content="Zamknij" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
         </StackPanel>

@@ -10,7 +10,6 @@ namespace projekt.Nowy_folder
     {
         public int Id { get; set; }
         public string Nazwa_przepisu { get; set; }
-
         public string Skladniki { get; set; }
         public string Opis { get; set; }
         public byte[] Zdjecie { get; set; }

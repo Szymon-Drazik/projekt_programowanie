@@ -13,6 +13,7 @@ namespace projekt.Nowy_folder
         List<Baza> ReadAll();
         bool Update(Baza baza);
         bool Delete(int id);
+        bool Add();
 
     }
 }
