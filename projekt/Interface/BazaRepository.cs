@@ -7,6 +7,7 @@ using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
+using System.Windows.Media.Imaging;
 
 namespace projekt.Nowy_folder
 {
@@ -68,17 +69,22 @@ namespace projekt.Nowy_folder
             return result;
         }
 
-        public bool Delete(int id)
+        public bool Delete(string nazwaPrzepisu)
         {
             bool result = false;
+
+            using (SqliteConnection dbConnection = new SqliteConnection(connectionString))
+            {
+                dbConnection.Open();
+                string sql = "DELETE FROM Baza WHERE Nazwa_przepisu = @Nazwa_przepisu";
+                using (SqliteCommand command = new SqliteCommand(sql, dbConnection))
+                {
+                    command.Parameters.AddWithValue("@Nazwa_przepisu", nazwaPrzepisu);
+                    result = command.ExecuteNonQuery() > 0;
+                }
+            }
+
             return result;
-
-        }
-
-        public Baza Read(int id)
-        {
-            Baza baza = new Baza();
-            return baza;
         }
 
         public List<string> ReadAll()
@@ -109,6 +115,48 @@ namespace projekt.Nowy_folder
             bool result = false;
             return result;
         }
+        public (string, BitmapImage) GetRecipeDetails(string nazwaPrzepisu)
+        {
+            using (SqliteConnection dbConnection = new SqliteConnection(connectionString))
+            {
+                dbConnection.Open();
+                string sql = "SELECT Skladniki, Opis, Zdjecie FROM Baza WHERE Nazwa_przepisu = @Nazwa_przepisu";
+                using (SqliteCommand command = new SqliteCommand(sql, dbConnection))
+                {
+                    command.Parameters.AddWithValue("@Nazwa_przepisu", nazwaPrzepisu);
+
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string skladniki = reader.GetString(0);
+                            string opis = reader.GetString(1);
+                            byte[] zdjecieBytes = (byte[])reader["Zdjecie"];
+
+                            BitmapImage image = ByteArrayToImage(zdjecieBytes);
+                            string details = $"Składniki: {skladniki}\nOpis: {opis}";
+                            return (details, image);
+                        }
+                    }
+                }
+            }
+
+            return ("Przepis nie został znaleziony.", null);
+        }
+
+        private BitmapImage ByteArrayToImage(byte[] byteArray)
+        {
+            using (var stream = new MemoryStream(byteArray))
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = stream;
+                image.EndInit();
+                return image;
+            }
+        }
     }
+
     
 }

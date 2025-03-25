@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using projekt.Nowy_folder;
+using Microsoft.Win32;
 
 
 
@@ -70,11 +71,43 @@ namespace projekt
                 // Konwersja obrazu do tablicy bajtów (blob)
                 byte[] imageBlob = File.ReadAllBytes(selectedFileName);
 
-                // Tutaj możesz użyć imageBlob według potrzeb, np. do zapisania w bazie danych
+                
             }
         }
 
         private void btn_return_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
+
+        private void btn_search_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedRecipe = cmb_listview.SelectedItem as string;
+            txt_name.Clear();
+            txt_ingredients.Clear();
+            txt_description.Clear();
+            img_display.Source = null;  
+
+
+            if (!string.IsNullOrEmpty(selectedRecipe))
+            {
+                var (recipeDetails, recipeImage) = _bazaRepository.GetRecipeDetails(selectedRecipe);
+                var detailsParts = recipeDetails.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+                txt_name.Text = selectedRecipe;
+                txt_ingredients.Text = detailsParts[0].Replace("Składniki: ", "");
+                txt_description.Text = detailsParts[1].Replace("Opis: ", "");
+                img_display.Source = recipeImage;
+            }
+            else
+            {
+                MessageBox.Show("Wybierz przepis z listy.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
             main.Show();

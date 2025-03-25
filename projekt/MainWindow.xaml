@@ -1,7 +1,9 @@
 ﻿<Window x:Class="projekt.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Książka Kucharska" Height="600" Width="800" Background="#FFF5E1">
+        Title="Książka Kucharska" Height="600" Width="800" Background="#FFF5E1"
+        Left="100" Top="100"
+        ResizeMode="NoResize" WindowStyle="None">
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,7 +15,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 0 0 10">
             <Label Content="Wyszukaj przepis:" FontSize="16" FontWeight="Bold"/>
             <ComboBox Name="cmb_listview" Width="250" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="False" Margin="10 0 0 0" TextBoxBase.TextChanged="comboBoxSearch_TextChanged"/>
-            <Button Name="btn_search" Content="Szukaj" Width="100" Margin="10 0 0 0" Style="{DynamicResource ButtonStyle1}" />
+            <Button Name="btn_search" Content="Szukaj" Width="100" Margin="10 0 0 0" Style="{DynamicResource ButtonStyle1}" Click="btn_search_Click" />
         </StackPanel>
         
         <Grid Grid.Row="1" Margin="0 0 0 10">
@@ -41,10 +43,10 @@
 
         <!-- Przyciski -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Name="btn_add" Content="Dodaj przepis" Width="120" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
-            <Button Name="btn_edit" Content="Edytuj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
-            <Button Name="btn_delete" Content="Usuń" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
-            <Button Name="btn_close" Content="Zamknij" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Name="btn_add" Content="Dodaj przepis" Width="120" Margin="5" Style="{DynamicResource ButtonStyle1}" Click="btn_add_Click"/>
+            <Button Name="btn_edit" Content="Edytuj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}" Click="btn_edit_Click_1"/>
+            <Button Name="btn_delete" Content="Usuń" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}" Click="btn_delete_Click"/>
+            <Button Name="btn_close" Content="Zamknij" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}" Click="btn_close_Click"/>
         </StackPanel>
     </Grid>
 </Window>
