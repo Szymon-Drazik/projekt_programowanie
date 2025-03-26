@@ -25,7 +25,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Zdjęcie -->
-            <Border Grid.Column="0" Background="#FFFFFF" CornerRadius="10" Padding="10" Margin="10">
+            <Border Grid.Column="0" CornerRadius="10" Padding="10" Margin="10">
                 <Image Name="img" Stretch="Uniform" />
             </Border>
 

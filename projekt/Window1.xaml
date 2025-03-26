@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <!--Nazwa Przepisu-->
-        <Button Style="{DynamicResource kółka}" Width="50" Content="&#x2192;" FontSize="20" Margin="658,0,0,35" Click="Button_Click" Grid.RowSpan="2" HorizontalAlignment="Left"/>
+        <Button Style="{DynamicResource kółka}" Width="50" Content="D/W" FontSize="20" Margin="658,0,0,35" Click="Button_Click" Grid.RowSpan="2" HorizontalAlignment="Left"/>
         <Label Content="Nazwa przepisu:" FontWeight="Bold" Grid.Row="0" Margin="0,5,336,5"/>
         <TextBox Name="txt_name" Grid.Row="1" Margin="0,5,0,5" FontSize="14" Height="25" Grid.ColumnSpan="2"/>
         <!--Składniki-->
@@ -37,7 +37,7 @@
         <!--Przyciski-->
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,10,-10" Grid.ColumnSpan="2">
             <Button Style="{DynamicResource ButtonStyle1}" Name="btn_save" Content="Zapisz" Width="100" Margin="5" Click="btn_save_Click_1"/>
-            <Button Name="btn_cancel" Content="Anuluj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Name="btn_cancel" Content="Anuluj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}" Click="btn_cancel_Click"/>
         </StackPanel>
     </Grid>
 </Window>

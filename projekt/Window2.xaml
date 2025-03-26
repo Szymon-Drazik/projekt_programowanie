@@ -40,9 +40,8 @@
 
         <!-- Przyciski -->
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <Button x:Name="btn_return" Content="Wróć" Margin="5" Width="120" Style="{DynamicResource ButtonStyle1}" Click="btn_return_Click"/>
-            <Button x:Name="btn_save" Content="Zapisz zmiany" Width="120" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
-            <Button x:Name="btn_cancel" Content="Anuluj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}"/>
+            <Button x:Name="btn_save" Content="Zapisz zmiany" Width="120" Margin="5" Style="{DynamicResource ButtonStyle1}" Click="btn_save_Click"/>
+            <Button x:Name="btn_cancel" Content="Anuluj" Width="100" Margin="5" Style="{DynamicResource ButtonStyle1}" Click="btn_cancel_Click"/>
         </StackPanel>
     </Grid>
 </Window>

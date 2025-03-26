@@ -21,6 +21,7 @@ namespace projekt
 {
     public partial class Window2 : Window
     {
+        private byte[] imageBlob;
         private readonly Interface1 _bazaRepository = new BazaRepository();
         private List<string> przepisy;
         BazaRepository repo = new BazaRepository();
@@ -69,7 +70,7 @@ namespace projekt
                 img_display.Source = bitmap;
 
                 // Konwersja obrazu do tablicy bajtów (blob)
-                byte[] imageBlob = File.ReadAllBytes(selectedFileName);
+                 imageBlob = File.ReadAllBytes(selectedFileName);
 
                 
             }
@@ -77,9 +78,7 @@ namespace projekt
 
         private void btn_return_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
-            this.Close();
+            
         }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
@@ -108,6 +107,51 @@ namespace projekt
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
+
+        private void btn_save_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            string selectedRecipe = cmb_listview.SelectedItem as string;
+            string nazwa = txt_name.Text;
+            string skladniki = txt_ingredients.Text;
+            string opis = txt_description.Text;
+
+            Baza nowyPrzepis = new Baza
+            {
+                Nazwa_przepisu = nazwa,
+                Skladniki = skladniki,
+                Opis = opis,
+                Zdjecie = imageBlob
+            };
+
+            BazaRepository repo = new BazaRepository();
+            bool success = repo.Update(nowyPrzepis,selectedRecipe);
+
+            if (success)
+            {
+                MessageBox.Show("Przepis edytowany pomyślnie!");
+                cmb_listview.ClearValue(ComboBox.ItemsSourceProperty);
+                przepisy = _bazaRepository.ReadAll();
+
+                cmb_listview.ItemsSource = przepisy;             
+                txt_name.Clear();
+                txt_ingredients.Clear();
+                txt_description.Clear();
+                img_display.Source = null;
+            }
+            else
+            {
+                MessageBox.Show("Wystąpił błąd podczas edytowania przepisu.");
+            }
+        }
+
+        private void btn_cancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
             main.Show();

@@ -110,9 +110,37 @@ namespace projekt.Nowy_folder
             return recipeNames;
         }
 
-        public bool Update(Baza baza)
+        public bool Update(Baza baza, string selected)
         {
             bool result = false;
+
+            using (SqliteConnection dbConnection = new SqliteConnection(connectionString))
+            {
+                dbConnection.Open();
+
+                if (dbConnection.State == System.Data.ConnectionState.Open)
+                {
+                    string sql = "UPDATE Baza SET Nazwa_przepisu = @Nazwa_przepisu, Skladniki = @Skladniki, Opis = @Opis, Zdjecie = @Zdjecie WHERE Nazwa_przepisu = @selected";
+                    using (SqliteCommand command = new SqliteCommand(sql, dbConnection))
+                    {
+                        command.Parameters.AddWithValue("@Nazwa_przepisu", baza.Nazwa_przepisu);
+                        command.Parameters.AddWithValue("@Skladniki", baza.Skladniki);
+                        command.Parameters.AddWithValue("@Opis", baza.Opis);
+                        command.Parameters.AddWithValue("@Zdjecie", baza.Zdjecie);
+                        command.Parameters.AddWithValue("@selected", selected);
+
+                        if (command.ExecuteNonQuery() == 1)
+                            result = true;
+                        else
+                            Console.WriteLine("Edycja się udała");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Edycja się nie udała");
+                }
+            }
+
             return result;
         }
         public (string, BitmapImage) GetRecipeDetails(string nazwaPrzepisu)

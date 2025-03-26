@@ -49,9 +49,7 @@ namespace projekt
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
-            this.Close();
+            
         }
 
         private void btn_save_Click_1(object sender, RoutedEventArgs e)
@@ -83,6 +81,13 @@ namespace projekt
             {
                 MessageBox.Show("Wystąpił błąd podczas dodawania przepisu.");
             }
+        }
+
+        private void btn_cancel_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
         }
     }
 }

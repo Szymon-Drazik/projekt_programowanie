@@ -11,7 +11,7 @@ namespace projekt.Nowy_folder
     {
         bool Create(Baza baza);
         List<string> ReadAll();
-        bool Update(Baza baza);
+        bool Update(Baza baza,string selected);
         bool Delete(string Nazwa_przepisu);
         (string, BitmapImage) GetRecipeDetails(string nazwaPrzepisu);
 
