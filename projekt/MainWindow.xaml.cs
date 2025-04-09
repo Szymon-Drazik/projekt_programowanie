@@ -38,14 +38,12 @@ namespace projekt
             {
                 string text = comboBox.Text.ToLower();
 
-                // Filtrujemy listę, ale nie usuwamy oryginalnych danych
                 var filteredList = przepisy
                     .Where(p => p.ToLower().Contains(text))
                     .ToList();
 
                 comboBox.ItemsSource = filteredList;
 
-                // Otwieramy listę podpowiedzi, jeśli są wyniki
                 comboBox.IsDropDownOpen = filteredList.Count > 0;
             }
         }
@@ -74,11 +72,9 @@ namespace projekt
 
             if (!string.IsNullOrEmpty(selectedRecipe))
             {
-                // Zakładamy, że BazaRepository ma metodę GetRecipeDetails
                 var (recipeDetails, recipeImage) = _bazaRepository.GetRecipeDetails(selectedRecipe);
                 var detailsParts = recipeDetails.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-                // Wyświetl szczegóły przepisu (np. w TextBlocku)
+                
                 txt_name.Text = selectedRecipe;
                 txt_ingredients.Text = detailsParts[0].Replace("Składniki: ", "");
                 txt_description.Text = detailsParts[1].Replace("Opis: ", "");
@@ -106,7 +102,6 @@ namespace projekt
                     {
                         MessageBox.Show("Przepis został usunięty.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        // Wyczyść pola po usunięciu
                         txt_name.Clear();
                         txt_ingredients.Clear();
                         txt_description.Clear();
@@ -134,3 +129,5 @@ namespace projekt
         }
     }
 }
+
+

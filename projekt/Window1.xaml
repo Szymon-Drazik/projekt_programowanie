@@ -20,7 +20,6 @@
         </Grid.RowDefinitions>
 
         <!--Nazwa Przepisu-->
-        <Button Style="{DynamicResource kółka}" Width="50" Content="D/W" FontSize="20" Margin="658,0,0,35" Click="Button_Click" Grid.RowSpan="2" HorizontalAlignment="Left"/>
         <Label Content="Nazwa przepisu:" FontWeight="Bold" Grid.Row="0" Margin="0,5,336,5"/>
         <TextBox Name="txt_name" Grid.Row="1" Margin="0,5,0,5" FontSize="14" Height="25" Grid.ColumnSpan="2"/>
         <!--Składniki-->
@@ -32,7 +31,7 @@
 
         <!-- Obrazek i przycisk ładowania -->
         <Button Canvas.ZIndex="2"  Style="{DynamicResource ButtonStyle1}" Name="btn_loadImage" Content="Dodaj zdjecie" Grid.Row="4" Height="30" Margin="602,143,40,26" Click="btn_loadImage_Click" RenderTransformOrigin="0.507,0.621"/>
-        <Image Name="img_display" Grid.Row="3" Margin="346,164,148,8" Stretch="Uniform" Grid.RowSpan="2"/>
+        <Image Name="img_display" Grid.Row="3" Margin="346,160,148,8" Stretch="Uniform" Grid.RowSpan="2"/>
 
         <!--Przyciski-->
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,10,-10" Grid.ColumnSpan="2">

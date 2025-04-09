@@ -21,7 +21,6 @@
             <ComboBox Name="cmb_listview" Width="250" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="False" Margin="10 0 0 0" TextBoxBase.TextChanged="comboBoxSearch_TextChanged"/>
             <Button Name="btn_search" Content="Szukaj" Width="100" Margin="10 0 0 0" Click="btn_search_Click" />
         </StackPanel>
-        <Button Style="{DynamicResource kółka}" Width="50" Content="&#x2192;" FontSize="20" Margin="685,0,0,0" Click="Button_Click" HorizontalAlignment="Left"/>
 
         <!--Nazwa-->
         <Label Content="Nazwa przepisu:" FontWeight="Bold" Grid.Row="1" Margin="0,5,0,5" Grid.ColumnSpan="2"/>

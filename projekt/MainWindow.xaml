@@ -37,7 +37,7 @@
                 <Label Content="Składniki:" FontWeight="Bold"/>
                 <TextBox Name="txt_ingredients" IsReadOnly="True" Margin="0 5" Height="80" TextWrapping="Wrap"/>
                 <Label Content="Sposób przygotowania:" FontWeight="Bold"/>
-                <TextBox Name="txt_description" IsReadOnly="True" Height="228" TextWrapping="Wrap"/>
+                <TextBox x:Name="txt_description" IsReadOnly="True" Height="228" TextWrapping="Wrap"/>
             </StackPanel>
         </Grid>
 

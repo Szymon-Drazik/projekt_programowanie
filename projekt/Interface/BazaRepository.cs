@@ -120,24 +120,61 @@ namespace projekt.Nowy_folder
 
                 if (dbConnection.State == System.Data.ConnectionState.Open)
                 {
-                    string sql = "UPDATE Baza SET Nazwa_przepisu = @Nazwa_przepisu, Skladniki = @Skladniki, Opis = @Opis, Zdjecie = @Zdjecie WHERE Nazwa_przepisu = @selected";
-                    using (SqliteCommand command = new SqliteCommand(sql, dbConnection))
-                    {
-                        command.Parameters.AddWithValue("@Nazwa_przepisu", baza.Nazwa_przepisu);
-                        command.Parameters.AddWithValue("@Skladniki", baza.Skladniki);
-                        command.Parameters.AddWithValue("@Opis", baza.Opis);
-                        command.Parameters.AddWithValue("@Zdjecie", baza.Zdjecie);
-                        command.Parameters.AddWithValue("@selected", selected);
+                    List<string> updateFields = new List<string>();
+                    List<SqliteParameter> parameters = new List<SqliteParameter>();
 
-                        if (command.ExecuteNonQuery() == 1)
-                            result = true;
-                        else
-                            Console.WriteLine("Edycja się udała");
+                    if (baza.Nazwa_przepisu != null)
+                    {
+                        updateFields.Add("Nazwa_przepisu = @Nazwa_przepisu");
+                        parameters.Add(new SqliteParameter("@Nazwa_przepisu", baza.Nazwa_przepisu));
+                    }
+
+                    if (baza.Skladniki != null)
+                    {
+                        updateFields.Add("Skladniki = @Skladniki");
+                        parameters.Add(new SqliteParameter("@Skladniki", baza.Skladniki));
+                    }
+
+                    if (baza.Opis != null)
+                    {
+                        updateFields.Add("Opis = @Opis");
+                        parameters.Add(new SqliteParameter("@Opis", baza.Opis));
+                    }
+
+                    if (baza.Zdjecie != null)
+                    {
+                        updateFields.Add("Zdjecie = @Zdjecie");
+                        parameters.Add(new SqliteParameter("@Zdjecie", baza.Zdjecie));
+                    }
+
+                    if (updateFields.Count > 0)
+                    {
+                        string sql = $"UPDATE Baza SET {string.Join(", ", updateFields)} WHERE Nazwa_przepisu = @selected";
+                        using (SqliteCommand command = new SqliteCommand(sql, dbConnection))
+                        {
+                            foreach (var param in parameters)
+                            {
+                                command.Parameters.Add(param);
+                            }
+                            command.Parameters.AddWithValue("@selected", selected);
+
+                            if (selected != null)
+                                if(command.ExecuteNonQuery() == 1)
+                                {
+                                    result = true;
+                                }
+                                else
+                                    Console.WriteLine("Edycja się nie udała");
+                            else
+                            {
+                                Console.WriteLine("Edycja się nie udała");
+                            }
+                        }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Edycja się nie udała");
+                    Console.WriteLine("Połączenie z bazą danych się nie udało");
                 }
             }
 

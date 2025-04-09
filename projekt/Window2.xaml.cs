@@ -42,14 +42,12 @@ namespace projekt
             {
                 string text = comboBox.Text.ToLower();
 
-                // Filtrujemy listę, ale nie usuwamy oryginalnych danych
                 var filteredList = przepisy
                     .Where(p => p.ToLower().Contains(text))
                     .ToList();
 
                 comboBox.ItemsSource = filteredList;
 
-                // Otwieramy listę podpowiedzi, jeśli są wyniki
                 comboBox.IsDropDownOpen = filteredList.Count > 0;
             }
         }
@@ -69,16 +67,11 @@ namespace projekt
                 bitmap.EndInit();
                 img_display.Source = bitmap;
 
-                // Konwersja obrazu do tablicy bajtów (blob)
+                
                  imageBlob = File.ReadAllBytes(selectedFileName);
 
                 
             }
-        }
-
-        private void btn_return_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
@@ -129,21 +122,23 @@ namespace projekt
                 Opis = opis,
                 Zdjecie = imageBlob
             };
-
-            BazaRepository repo = new BazaRepository();
-            bool success = repo.Update(nowyPrzepis,selectedRecipe);
-
-            if (success)
+            if (nowyPrzepis.Nazwa_przepisu != "")
             {
-                MessageBox.Show("Przepis edytowany pomyślnie!");
-                cmb_listview.ClearValue(ComboBox.ItemsSourceProperty);
-                przepisy = _bazaRepository.ReadAll();
+                BazaRepository repo = new BazaRepository();
+                bool success = repo.Update(nowyPrzepis, selectedRecipe);
 
-                cmb_listview.ItemsSource = przepisy;             
-                txt_name.Clear();
-                txt_ingredients.Clear();
-                txt_description.Clear();
-                img_display.Source = null;
+                if (success)
+                {
+                    MessageBox.Show("Przepis edytowany pomyślnie!");
+                    cmb_listview.ClearValue(ComboBox.ItemsSourceProperty);
+                    przepisy = _bazaRepository.ReadAll();
+
+                    cmb_listview.ItemsSource = przepisy;
+                    txt_name.Clear();
+                    txt_ingredients.Clear();
+                    txt_description.Clear();
+                    img_display.Source = null;
+                }
             }
             else
             {

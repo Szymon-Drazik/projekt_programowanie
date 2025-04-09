@@ -18,9 +18,6 @@ using System.Xml.Linq;
 
 namespace projekt
 {
-    /// <summary>
-    /// Logika interakcji dla klasy Window1.xaml
-    /// </summary>
     public partial class Window1 : Window
     {
         private byte[] imageBlob;
@@ -47,11 +44,6 @@ namespace projekt
                 imageBlob = File.ReadAllBytes(selectedFileName);
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void btn_save_Click_1(object sender, RoutedEventArgs e)
         {
             string nazwa = txt_name.Text;
@@ -65,17 +57,19 @@ namespace projekt
                 Opis = opis,
                 Zdjecie = imageBlob
             };
-
-            BazaRepository repo = new BazaRepository();
-            bool success = repo.Create(nowyPrzepis);
-
-            if (success)
+            if (nowyPrzepis.Nazwa_przepisu != "")
             {
-                MessageBox.Show("Przepis dodany pomyślnie!");
-                txt_name.Clear();
-                txt_ingredients.Clear();
-                txt_description.Clear();
-                img_display.Source = null;
+                BazaRepository repo = new BazaRepository();
+                bool success = repo.Create(nowyPrzepis);
+
+                if (success)
+                {
+                    MessageBox.Show("Przepis dodany pomyślnie!");
+                    txt_name.Clear();
+                    txt_ingredients.Clear();
+                    txt_description.Clear();
+                    img_display.Source = null;
+                }
             }
             else
             {
